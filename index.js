@@ -1,6 +1,6 @@
 // fetch section
 let fetchDate = [] ;
-const loadInitialData =(loadDataLimit) => {
+const loadInitialData =(loadDataLimit, sortByDate) => {
 
 
 const url = `https://openapi.programming-hero.com/api/ai/tools`
@@ -8,12 +8,12 @@ fetch(url)
 .then(res => res.json())
 .then(data => {
     fetchDate = data.data.tools
-    displayInitialData(data.data.tools , loadDataLimit)
+    displayInitialData(data.data.tools , loadDataLimit, sortByDate)
 })
 }
-const displayInitialData =(tools, loadDataLimit) =>{
+const displayInitialData =(tools, loadDataLimit, sortByDate) =>{
 
-    if(loadDataLimit < 6){
+    if(sortByDate, loadDataLimit < 6){
         tools = tools.slice(0,6)    
     }
 
@@ -39,7 +39,7 @@ const displayInitialData =(tools, loadDataLimit) =>{
                 <h5 class="card-title">${tool.name}</h5>
                 <br>
                 <div class="d-flex justify-content-between align-items-center">
-                <p><i class="fa-regular fa-calendar"></i> ${tool.published_in}</p>  
+                <p><i class="fa-regular fa-calendar"></i><span class="fw-bold"> ${tool.published_in}</span></p>  
                 <p><i class="fa-solid fa-arrow-right text-danger"></i></p>  
 
               </div>
@@ -67,7 +67,7 @@ const displayInitialData =(tools, loadDataLimit) =>{
 // ------------ dataLimit-------
 
 const loadDataLimit = (dataLimit) =>{
-   
+
     loadInitialData(dataLimit)
 }
 // ---see more button-----
@@ -82,13 +82,18 @@ document.getElementById('see-more-btn').addEventListener('click', function(){
 
 const sortByDate =()=>{
 
-    createSort = (a, b) =>{
-        console.log(a)
+    createSort = (a, second) =>{
+        const dateA = new Date(a.published_in);
+        const dateB = new Date(second.published_in);
+        if (dateA > dateB) return 1;
+        else if (dateA < dateB) return -1;
+        return 0;
     }
- console.log(fetchDate.sort())
+  
+ displayInitialData(fetchDate.sort(createSort))
 }
 
-sortByDate()
+
 
 
 loadInitialData(5)
