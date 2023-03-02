@@ -110,14 +110,17 @@ const displayInitialDataForSingleCard = (data) => {
     const createDivofSingleId = document.createElement('div');
     createDivofSingleId.innerHTML =`
 
-    <div class=" container gap-5 d-flex justify-content-center align-items-center">
+    <div class=" container gap-5 d-flex flex-column flex-md-row justify-content-center align-items-center">
 
-    <div style="background-color: rgba(255, 228, 196, 0.64);" class="border border-danger p-3 rounded">
+    <div class="shadow-lg p-3 mb-5 bg-body rounded">
     <h5 class=" fw-bold" id="exampleModalToggleLabel">${data.description ? data.description : 'No Desceiption'}</h5>
-    <div>
-    <p>${data.pricing}</p>
-    <p></p>
-    <p></p>
+    <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-5 my-5">
+    <p class="text-success fw-bold text-center">${data.pricing ? data.pricing[0].price : 'Free of Cost'} <br> ${data.pricing ? data.pricing[0].plan : ''} </p>
+
+    <p class="text-warning fw-bold text-center">${data.pricing ? data.pricing[1].price : 'Free of Cost'} <br> ${data.pricing ? data.pricing[1].plan : ''} </p>
+<p class="text-danger fw-bold text-center">${data.pricing ? data.pricing[2].price : 'Free of Cost'} <br> ${data.pricing ? data.pricing[2].plan : ''} </p> 
+   
+    
     </div>
 
     <div>
@@ -147,3 +150,4 @@ loadInitialData(5)
 
 
 
+ 
