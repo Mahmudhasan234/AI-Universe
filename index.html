@@ -6,53 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI universe Hub</title>
     
+    <!-- font awsome script -->
+    <script src="https://kit.fontawesome.com/e13a2ba671.js" crossorigin="anonymous"></script>
     <!-- css link -->
     <link rel="stylesheet" href="./bootstrap-5.3.0-alpha1-dist/css/bootstrap.min.css">
+
 </head>
+
 <body>
     <!-- header Section -->
     <header class="my-3 d-flex flex-column gap-3 justify-content-center align-items-center">
-        <h1>AI Universe Hub</h1>
-        <button >Sort By Date</button>
+        <h1 >AI Universe Hub</h1>
+
+        <button onclick="sortByDate()">Sort By Date</button>
     </header>
 <!-- header section end -->
 
 <!-- card section starts -->
 
 <section class="container">
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col">
-          <div class="card">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            </div>
-          </div>
-        </div>
+    <div id="card-parent-body" class="row row-cols-1 row-cols-md-3 g-4">
         
-        <div class="col">
-          <div class="card">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            </div>
-          </div>
-        </div>
       </div>
 </section>
 <!-- card Section End -->
 
+<!-- Loading -->
 
 <!-- Modal Section -->
 
@@ -62,7 +41,7 @@
 
 <!-- see all Section -->
 <section class="container d-flex justify-content-center align-items-center gap-3 my-3">
-<button>See More</button>
+<button id="see-more-btn" class="btn btn-danger"><span id="loading-spinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span> See More</button>
 </section>
 
 <!-- Sell all section ends -->
