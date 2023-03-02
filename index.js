@@ -29,25 +29,26 @@ const displayInitialData =(tools, loadDataLimit, sortByDate) =>{
         <div class="card">
             <img style="height: 220px;" src="${tool.image}" class="card-img-top" alt="...">
             <div class="card-body ">
-                <h3>Features</h3>
-                <ul>
-                <li><h5>${tool.features[0]}</h5></li>
-                <li><h5>${tool.features[1]}</h5></li>
-                <li><h5>${tool.features[2]}</h5></li>
+                <h3 class="fw-bold">Features</h3>
+                <ul class="fw-bold">
+                <li><h5 class="fw-semibold text-secondary">${tool.features[0]}</h5></li>
+                <li><h5 class="fw-semibold text-secondary">${tool.features[1]}</h5></li>
+                <li><h5 class="fw-semibold text-secondary">${tool.features[2]}</h5></li>
                 </ul>
                 <hr>
-                <h5 class="card-title">${tool.name}</h5>
+                <h5 class="card-title fw-bold">${tool.name}</h5>
                 <br>
                 <div class="d-flex justify-content-between align-items-center">
-                <p><i class="fa-regular fa-calendar"></i><span class="fw-bold"> ${tool.published_in}</span></p>  
-                <p><i class="fa-solid fa-arrow-right text-danger"></i></p>  
+                <p><i class="fa-regular fa-calendar"></i><span class="fw-bold text-secondary"> ${tool.published_in}</span></p>  
+          
+                <button class="border-0 rounded-circle"><i class="fa-solid fa-arrow-right text-danger"  data-bs-toggle="modal" data-bs-target="#detailsModal"></i></button>  
 
               </div>
             </div>
           </div>
         `
         cardParentBody.appendChild(createChidDiv)
-        // console.log(tool)
+        console.log(tool)
     });
     loadSpinner(false)
 }
