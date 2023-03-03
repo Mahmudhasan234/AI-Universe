@@ -96,6 +96,7 @@ const sortByDate =()=>{
  displayInitialData(fetchDate.sort(createSort))
 }
 
+
 // fetch data of single card
 
 const loadInitialDataForSingleCard = (id) => {
@@ -120,6 +121,7 @@ fetch(url)
     
     `
     // console.log(data.features)
+    //------ features Data-------
 
     const features = data.features
     
@@ -134,25 +136,53 @@ fetch(url)
             
             descriptionData +="<p>"+ "NO Data Found" + "</p>"
         }
-         featureData.innerHTML = descriptionData
-        
-        
-        
+         featureData.innerHTML = descriptionData   
+    }
+
+    // --------- integrations data---------
+
+    const integrations = data.integrations
+    console.log(integrations)
+    const integrationsData = document.getElementById('integrations-data')
+    let integrationDescriptionData ="";
+    // console.log(integrations)
+    if(integrations === null){
+        integrationsData.innerHTML =
+        `<p>No Data Found</p>`
+       console.log('no Data Found')
+    }
+    else{
+        for(individualData in integrations){
+            integrationDescriptionData +="<li>" +integrations[individualData]+ "</li>"
+            integrationsData.innerHTML = integrationDescriptionData
+            console.log(integrations[individualData])
+
+
+        }
     }
 
 
-
-
-
-
-
-
-// -----modal Image------
+    
+    // ------modal imagea nd aquracy-------
+    const onlyImage = document.getElementById('only-img-and-aqu')
+    const accuracy = data.accuracy.score*100
+    console.log(accuracy)
+    if(accuracy === 0 ){
+        onlyImage.innerHTML =`
+        <p> <img  src="${data.image_link[0]}" class="card-img-top rounded" alt="..." ></p>
+        `}
+        else{
+            onlyImage.innerHTML =`
+            <p> <img  src="${data.image_link[0]}" class="card-img-top rounded" alt="..." > <span style="bottom:250px; left: 350px;" class="position-relative  badge rounded-pill bg-danger">${accuracy} % Accuracy </span></p>
+            `    
+    }
+    // -----modal Image Description------
     const modalImage = document.getElementById('image-section')
     modalImage.innerHTML=`
-    <img src="${data.image_link[0]}" class="card-img-top rounded mb-5" alt="...">
+   
+   
     <h5 class="fw-bold text-center mt-5 mb-3">${data.input_output_examples ? data.input_output_examples[0].input : 'Can you give any example?'}</h5> 
-    <h6 class="text-secondary fw-bold text-center mb-5">${data.input_output_examples ? data.input_output_examples[0].output : 'No! Not Yet! Take a break!!!'}</h6> 
+    <h6 class="text-secondary fw-bold text-center mb-5 ">${data.input_output_examples ? data.input_output_examples[0].output : 'No! Not Yet! Take a break!!!'}</h6> 
     
     `
  }
