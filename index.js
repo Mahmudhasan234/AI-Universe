@@ -33,9 +33,9 @@ const displayInitialData =(tools, loadDataLimit, sortByDate) =>{
             <div class="card-body ">
                 <h3 class="fw-bold">Features</h3>
                 <ul class="fw-bold">
-                <li><h5 class="fw-semibold text-secondary">${tool.features[0]}</h5></li>
-                <li><h5 class="fw-semibold text-secondary">${tool.features[1]}</h5></li>
-                <li><h5 class="fw-semibold text-secondary">${tool.features[2]}</h5></li>
+                <li><h6 class="fw-semibold text-secondary">${tool.features[0]}</h6></li>
+                <li><h6 class="fw-semibold text-secondary">${tool.features[1]}</h6></li>
+                <li><h6 class="fw-semibold text-secondary">${tool.features[2]}</h6></li>
                 </ul>
                 <hr>
                 <h5 class="card-title fw-bold">${tool.name}</h5>
@@ -107,10 +107,11 @@ fetch(url)
 }
 
  const displayInitialDataForSingleCard = (data) => {
+    // -----Modal title-----
   const modalTitle = document.getElementById('Modal-tittle')
  modalTitle.innerHTML = `${data.description ? data.description : 'No Desceiption'} 
  `
-
+// -----Modal Pricing--------
     const priceAndPlan = document.getElementById('pricing-section')
     priceAndPlan.innerHTML =`
             <p class="text-success fw-bold text-center">${data.pricing ? data.pricing[0].price : 'Free of Cost'} <br> ${data.pricing ? data.pricing[0].plan : 'Basic'} </p>
@@ -118,7 +119,42 @@ fetch(url)
             <p class="text-danger fw-bold text-center">${data.pricing ? data.pricing[2].price : 'Free of Cost'} <br> ${data.pricing ? data.pricing[2].plan : 'EnterPrise'} </p> 
     
     `
-//    console.log(data)
+    // console.log(data.features)
+
+    const features = data.features
+    
+    let descriptionData = "";
+    let featureData = document.getElementById('features-data');
+    for(let i in features){
+        if(features){
+
+            descriptionData +="<li>" +features[i].feature_name + "</li>"
+        }
+        else{
+            
+            descriptionData +="<p>"+ "NO Data Found" + "</p>"
+        }
+         featureData.innerHTML = descriptionData
+        
+        
+        
+    }
+
+
+
+
+
+
+
+
+// -----modal Image------
+    const modalImage = document.getElementById('image-section')
+    modalImage.innerHTML=`
+    <img src="${data.image_link[0]}" class="card-img-top rounded mb-5" alt="...">
+    <h5 class="fw-bold text-center mt-5 mb-3">${data.input_output_examples ? data.input_output_examples[0].input : 'Can you give any example?'}</h5> 
+    <h6 class="text-secondary fw-bold text-center mb-5">${data.input_output_examples ? data.input_output_examples[0].output : 'No! Not Yet! Take a break!!!'}</h6> 
+    
+    `
  }
 
 
