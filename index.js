@@ -173,7 +173,7 @@ displayInitialDataForSingleCard(data.data)
             <button class="position-relative border-0 bg-light">
             <img  src="${data.image_link[0]}" class="card-img-top rounded" alt="..." ></p>
             <span style="bottom:190px; left:130px" class="position-relative  badge rounded bg-danger">
-            99+</span>
+            ${accuracy}% Accuracy</span>
             </button> 
 `    
     }
