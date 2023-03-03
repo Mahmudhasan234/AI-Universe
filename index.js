@@ -50,7 +50,7 @@ const displayInitialData =(tools, loadDataLimit, sortByDate) =>{
           </div>
         `
         cardParentBody.appendChild(createChidDiv)
-        console.log(tool)
+        // console.log(tool)
     });
     loadSpinner(false)
 }
@@ -103,77 +103,23 @@ const loadInitialDataForSingleCard = (id) => {
 fetch(url)
 .then(res => res.json())
 .then(data => displayInitialDataForSingleCard(data.data))
-.catch (error=>console.log(error))
+// .catch (error=>console.log(error))
 }
 
-const displayInitialDataForSingleCard = (data) => {
-    const featureDatasArray = []
-    const featureDatas = Object.values(data.integrations)
-    featureDatasArray.push(featureDatas)
-    for(const data of featureDatasArray[0]){
-        console.log(data)
-    }
+ const displayInitialDataForSingleCard = (data) => {
+  const modalTitle = document.getElementById('Modal-tittle')
+ modalTitle.innerHTML = `${data.description ? data.description : 'No Desceiption'} 
+ `
 
-
-    const singleDataParentDiv = document.getElementById('modal-body')
-    singleDataParentDiv.classList.add('modal-body')
-    singleDataParentDiv.innerHTML = '';
-    const createDivofSingleId = document.createElement('div');
-    createDivofSingleId.innerHTML +=`
-
-    <div class=" container gap-5 d-flex flex-column flex-md-row justify-content-center align-items-center">
-
-    <div class="shadow-lg p-3 mb-5 bg-body rounded">
-        <h5 class=" fw-bold" id="exampleModalToggleLabel">${data.description ? data.description : 'No Desceiption'}</h5>
-    <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-5 my-5">
-        <p class="text-success fw-bold text-center">${data.pricing ? data.pricing[0].price : 'Free of Cost'} <br> ${data.pricing ? data.pricing[0].plan : ''} </p>
-
-     <p class="text-warning fw-bold text-center">${data.pricing ? data.pricing[1].price : 'Free of Cost'} <br> ${data.pricing ? data.pricing[1].plan : ''} </p>
-    <p class="text-danger fw-bold text-center">${data.pricing ? data.pricing[2].price : 'Free of Cost'} <br> ${data.pricing ? data.pricing[2].plan : ''} </p> 
-
-    </div>
-
-    <div class="d-flex flex-column flex-md-row justify-content-around align-items-center gap-5 my-5">
-    <div>
-    <h5 class="fw-bold">Features</h5>
+    const priceAndPlan = document.getElementById('pricing-section')
+    priceAndPlan.innerHTML =`
+            <p class="text-success fw-bold text-center">${data.pricing ? data.pricing[0].price : 'Free of Cost'} <br> ${data.pricing ? data.pricing[0].plan : 'Basic'} </p>
+           <p class="text-warning fw-bold text-center">${data.pricing ? data.pricing[1].price : 'Free of Cost'} <br> ${data.pricing ? data.pricing[1].plan : 'Pro'} </p>
+            <p class="text-danger fw-bold text-center">${data.pricing ? data.pricing[2].price : 'Free of Cost'} <br> ${data.pricing ? data.pricing[2].plan : 'EnterPrise'} </p> 
     
-    <ul>
-    <li>${data.features ? data.features['1'].feature_name : 'No Data Found'}</li>
-    <li>${data.features ? data.features['2'].feature_name : 'No Data Found'}</li>
-    <li>${data.features ? data.features['3'].feature_name : 'No Data Found'}</li>
-    </ul>
-    </div>
-    <div>
-    <h5 class="fw-bold">Integrations</h5>
-    <ul>
-    <li>${data.integrations ? data.integrations[0]: 'No Data Found'}</li>
-    
-    <li>${data.integrations ? data.integrations[2]: " "}</li>
-    </ul>
-    
-    </div>
-
-    </div>
-
-    </div>
-
-    <div>
-    <img src="${data.image_link[0]}" class="card-img-top rounded" alt="...">
-    </div>
-
-    </div>
     `
-
-    singleDataParentDiv.appendChild(createDivofSingleId)
-    
-    const newdiv = document.createElement('div')
-    newdiv.innerHTML =`
-    <li>${data.integrations ? data.integrations[2]: " "}</li>
-
-    `
-    singleDataParentDiv.appendChild(newdiv)
-    console.log(data)
-}
+//    console.log(data)
+ }
 
 
 
