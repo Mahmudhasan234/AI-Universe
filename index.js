@@ -104,11 +104,17 @@ fetch(url)
 }
 
 const displayInitialDataForSingleCard = (data) => {
+    
+    const featureDatas = Object.values(data.features)
+    for (const data in featureDatas){
+        console.log(data)
+    }
+
     const singleDataParentDiv = document.getElementById('modal-body')
     singleDataParentDiv.classList.add('modal-body')
     singleDataParentDiv.innerHTML = '';
     const createDivofSingleId = document.createElement('div');
-    createDivofSingleId.innerHTML =`
+    createDivofSingleId.innerHTML +=`
 
     <div class=" container gap-5 d-flex flex-column flex-md-row justify-content-center align-items-center">
 
@@ -125,8 +131,8 @@ const displayInitialDataForSingleCard = (data) => {
     <div class="d-flex flex-column flex-md-row justify-content-around align-items-center gap-5 my-5">
     <div>
     <h5 class="fw-bold">Features</h5>
-    <ul ${data.features ? data.features : 'No Data Found'
-    }>
+    
+    <ul ${data.features ? data.features : 'No Data Found'}>
     <li>${data.features ? data.features['1'].feature_name : 'No Data Found'}</li>
     <li>${data.features ? data.features['2'].feature_name : 'No Data Found'}</li>
     <li>${data.features ? data.features['3'].feature_name : 'No Data Found'}</li>
@@ -134,11 +140,10 @@ const displayInitialDataForSingleCard = (data) => {
     </div>
     <div>
     <h5 class="fw-bold">Integrations</h5>
-    <ul ${data.integrations ? data.integrations[0] : 'No Data Found'
-    }>
+    <ul ${data.integrations ? data.integrations : 'No Data Found'}>
     <li>${data.integrations ? data.integrations[0]: 'No Data Found'}</li>
-    <li>${data.integrations ? data.integrations[1]: 'No Data Found'}</li>
-    <li>${data.integrations ? data.integrations[2]: 'No Data Found'}</li>
+    
+    <li>${data.integrations ? data.integrations[2]: " "}</li>
     </ul>
     
     </div>
@@ -148,7 +153,7 @@ const displayInitialDataForSingleCard = (data) => {
     </div>
 
     <div>
-    <img src="${data.image_link[0]}" class="card-img-top" alt="...">
+    <img src="${data.image_link[0]}" class="card-img-top rounded" alt="...">
     </div>
 
     </div>
