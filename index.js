@@ -99,11 +99,11 @@ const sortByDate =()=>{
 
 // fetch data of single card
 
-const loadInitialDataForSingleCard = (id) => {
+const loadInitialDataForSingleCard = async (id) => {
  const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`
-fetch(url)
-.then(res => res.json())
-.then(data => displayInitialDataForSingleCard(data.data))
+const res = await fetch(url)
+const data = await res.json()
+displayInitialDataForSingleCard(data.data)
 // .catch (error=>console.log(error))
 }
 
@@ -156,41 +156,34 @@ fetch(url)
             integrationDescriptionData +="<li>" +integrations[individualData]+ "</li>"
             integrationsData.innerHTML = integrationDescriptionData
             console.log(integrations[individualData])
-
-
         }
     }
-
-
-    
     // ------modal imagea nd aquracy-------
     const onlyImage = document.getElementById('only-img-and-aqu')
     const accuracy = data.accuracy.score*100
     console.log(accuracy)
+
     if(accuracy === 0 ){
         onlyImage.innerHTML =`
         <p> <img  src="${data.image_link[0]}" class="card-img-top rounded" alt="..." ></p>
         `}
+
         else{
             onlyImage.innerHTML =`
-            <p> <img  src="${data.image_link[0]}" class="card-img-top rounded" alt="..." > <span style="bottom:250px; left: 350px;" class="position-relative  badge rounded-pill bg-danger">${accuracy} % Accuracy </span></p>
-            `    
+            <button class="position-relative border-0 bg-light">
+            <img  src="${data.image_link[0]}" class="card-img-top rounded" alt="..." ></p>
+            <span style="bottom:190px; left:130px" class="position-relative  badge rounded bg-danger">
+            99+</span>
+            </button> 
+`    
     }
     // -----modal Image Description------
     const modalImage = document.getElementById('image-section')
     modalImage.innerHTML=`
-   
-   
     <h5 class="fw-bold text-center mt-5 mb-3">${data.input_output_examples ? data.input_output_examples[0].input : 'Can you give any example?'}</h5> 
-    <h6 class="text-secondary fw-bold text-center mb-5 ">${data.input_output_examples ? data.input_output_examples[0].output : 'No! Not Yet! Take a break!!!'}</h6> 
-    
+    <h6 class="text-secondary fw-bold text-center mb-5 ">${data.input_output_examples ? data.input_output_examples[0].output : 'No! Not Yet! Take a break!!!'}</h6>
     `
  }
-
-
-
-
-
 loadInitialData(5)
 
 
