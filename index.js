@@ -1,9 +1,7 @@
 // fetch section
 let fetchDate = [] ;
 const loadInitialData =(loadDataLimit, sortByDate) => {
-
-
-const url = `https://openapi.programming-hero.com/api/ai/tools`
+    const url = `https://openapi.programming-hero.com/api/ai/tools`
 fetch(url)
 .then(res => res.json())
 .then(data => {
@@ -15,7 +13,7 @@ fetch(url)
 }
 const displayInitialData =(tools, loadDataLimit, sortByDate) =>{
 
-    if(sortByDate, loadDataLimit < 6){
+    if(sortByDate < 6 || loadDataLimit < 6){
         tools = tools.slice(0,6)    
     }
 
@@ -38,7 +36,7 @@ const displayInitialData =(tools, loadDataLimit, sortByDate) =>{
                 <li><h6 class="fw-semibold text-secondary">${tool.features[2]}</h6></li>
                 </ul>
                 <hr>
-                <h5 class="card-title fw-bold">${tool.name}</h5>
+                <h5 class="card-title fw-bold p-3">${tool.name}</h5>
                 <br>
                 <div class="d-flex justify-content-between align-items-center">
                 <p><i class="fa-regular fa-calendar"></i><span class="fw-bold text-secondary"> ${tool.published_in}</span></p>  
@@ -85,12 +83,13 @@ document.getElementById('see-more-btn').addEventListener('click', function(){
 
 const sortByDate =()=>{
 
-    createSort = (a, second) =>{
-        const dateA = new Date(a.published_in);
+    createSort = (first, second) =>{
+        const dateA = new Date(first.published_in);
         const dateB = new Date(second.published_in);
         if (dateA > dateB) return 1;
         else if (dateA < dateB) return -1;
         return 0;
+        
     }
   
  displayInitialData(fetchDate.sort(createSort))
@@ -100,10 +99,15 @@ const sortByDate =()=>{
 // fetch data of single card
 
 const loadInitialDataForSingleCard = async (id) => {
- const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`
-const res = await fetch(url)
-const data = await res.json()
-displayInitialDataForSingleCard(data.data)
+try{
+    const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`
+    const res = await fetch(url)
+    const data = await res.json()
+    displayInitialDataForSingleCard(data.data)
+}
+catch(error){
+    console.log(error)
+}
 // .catch (error=>console.log(error))
 }
 
