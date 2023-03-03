@@ -113,17 +113,35 @@ const displayInitialDataForSingleCard = (data) => {
     <div class=" container gap-5 d-flex flex-column flex-md-row justify-content-center align-items-center">
 
     <div class="shadow-lg p-3 mb-5 bg-body rounded">
-    <h5 class=" fw-bold" id="exampleModalToggleLabel">${data.description ? data.description : 'No Desceiption'}</h5>
+        <h5 class=" fw-bold" id="exampleModalToggleLabel">${data.description ? data.description : 'No Desceiption'}</h5>
     <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-5 my-5">
-    <p class="text-success fw-bold text-center">${data.pricing ? data.pricing[0].price : 'Free of Cost'} <br> ${data.pricing ? data.pricing[0].plan : ''} </p>
+        <p class="text-success fw-bold text-center">${data.pricing ? data.pricing[0].price : 'Free of Cost'} <br> ${data.pricing ? data.pricing[0].plan : ''} </p>
 
-    <p class="text-warning fw-bold text-center">${data.pricing ? data.pricing[1].price : 'Free of Cost'} <br> ${data.pricing ? data.pricing[1].plan : ''} </p>
-<p class="text-danger fw-bold text-center">${data.pricing ? data.pricing[2].price : 'Free of Cost'} <br> ${data.pricing ? data.pricing[2].plan : ''} </p> 
-   
-    
+     <p class="text-warning fw-bold text-center">${data.pricing ? data.pricing[1].price : 'Free of Cost'} <br> ${data.pricing ? data.pricing[1].plan : ''} </p>
+    <p class="text-danger fw-bold text-center">${data.pricing ? data.pricing[2].price : 'Free of Cost'} <br> ${data.pricing ? data.pricing[2].plan : ''} </p> 
+
     </div>
 
+    <div class="d-flex flex-column flex-md-row justify-content-around align-items-center gap-5 my-5">
     <div>
+    <h5 class="fw-bold">Features</h5>
+    <ul ${data.features ? data.features : 'No Data Found'
+    }>
+    <li>${data.features ? data.features['1'].feature_name : 'No Data Found'}</li>
+    <li>${data.features ? data.features['2'].feature_name : 'No Data Found'}</li>
+    <li>${data.features ? data.features['3'].feature_name : 'No Data Found'}</li>
+    </ul>
+    </div>
+    <div>
+    <h5 class="fw-bold">Integrations</h5>
+    <ul ${data.integrations ? data.integrations[0] : 'No Data Found'
+    }>
+    <li>${data.integrations ? data.integrations[0]: 'No Data Found'}</li>
+    <li>${data.integrations ? data.integrations[1]: 'No Data Found'}</li>
+    <li>${data.integrations ? data.integrations[2]: 'No Data Found'}</li>
+    </ul>
+    
+    </div>
 
     </div>
 
