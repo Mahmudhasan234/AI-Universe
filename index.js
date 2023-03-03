@@ -9,7 +9,9 @@ fetch(url)
 .then(data => {
     fetchDate = data.data.tools
     displayInitialData(data.data.tools , loadDataLimit, sortByDate)
+    
 })
+.catch (error=>console.log(error))
 }
 const displayInitialData =(tools, loadDataLimit, sortByDate) =>{
 
@@ -101,14 +103,17 @@ const loadInitialDataForSingleCard = (id) => {
 fetch(url)
 .then(res => res.json())
 .then(data => displayInitialDataForSingleCard(data.data))
+.catch (error=>console.log(error))
 }
 
 const displayInitialDataForSingleCard = (data) => {
-    
-    const featureDatas = Object.values(data.features)
-    for (const data in featureDatas){
+    const featureDatasArray = []
+    const featureDatas = Object.values(data.integrations)
+    featureDatasArray.push(featureDatas)
+    for(const data of featureDatasArray[0]){
         console.log(data)
     }
+
 
     const singleDataParentDiv = document.getElementById('modal-body')
     singleDataParentDiv.classList.add('modal-body')
@@ -132,7 +137,7 @@ const displayInitialDataForSingleCard = (data) => {
     <div>
     <h5 class="fw-bold">Features</h5>
     
-    <ul ${data.features ? data.features : 'No Data Found'}>
+    <ul>
     <li>${data.features ? data.features['1'].feature_name : 'No Data Found'}</li>
     <li>${data.features ? data.features['2'].feature_name : 'No Data Found'}</li>
     <li>${data.features ? data.features['3'].feature_name : 'No Data Found'}</li>
@@ -140,7 +145,7 @@ const displayInitialDataForSingleCard = (data) => {
     </div>
     <div>
     <h5 class="fw-bold">Integrations</h5>
-    <ul ${data.integrations ? data.integrations : 'No Data Found'}>
+    <ul>
     <li>${data.integrations ? data.integrations[0]: 'No Data Found'}</li>
     
     <li>${data.integrations ? data.integrations[2]: " "}</li>
@@ -161,7 +166,12 @@ const displayInitialDataForSingleCard = (data) => {
 
     singleDataParentDiv.appendChild(createDivofSingleId)
     
-    
+    const newdiv = document.createElement('div')
+    newdiv.innerHTML =`
+    <li>${data.integrations ? data.integrations[2]: " "}</li>
+
+    `
+    singleDataParentDiv.appendChild(newdiv)
     console.log(data)
 }
 
