@@ -6,15 +6,16 @@ fetch(url)
 .then(res => res.json())
 .then(data => {
     fetchDate = data.data.tools
-    displayInitialData(data.data.tools , loadDataLimit, sortByDate)
+    displayInitialData(data.data.tools , loadDataLimit)
     
 })
 .catch (error=>console.log(error))
 }
-const displayInitialData =(tools, loadDataLimit, sortByDate) =>{
+const displayInitialData =(tools, loadDataLimit ) =>{
 
-    if(sortByDate < 6 || loadDataLimit < 6){
-        tools = tools.slice(0,6)    
+    if(loadDataLimit < 6){
+        tools = tools.slice(0,6);
+        fetchDate = fetchDate.slice(0,6)   
     }
 
 
