@@ -9,7 +9,8 @@ Utilizes an API to fetch data from a server.
 All buttons on the website are functional.
 
 # Technologies Used
-*HTML
-*CSS
-*JavaScript
-*API Fetch
+- HTML
+- CSS
+  - Bootstrap
+  
+- JavaScript
